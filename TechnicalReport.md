@@ -137,3 +137,55 @@ Apollo是一个高度可扩展协作的集群调度框架，通过分布式架�
  1. [Apollo：Scalable and Coordinated Scheduling for Cloud-Scale Computing](https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-boutin_0.pdf)
  2. [每周论文·Apollo: Scalable and Coordinated Scheduling for Cloud-Scale Computing](https://blog.csdn.net/violet_echo_0908/article/details/78174782)
  3. [Large-scale cluster management at Google with Borg](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/43438.pdf)
+ 
+ ----
+ # Kubernete
+## Characteristics
+1. 它是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。
+2. 通过Kubernetes，你可以快速部署应用，快速扩展应用，无缝对接新的应用功能，节省资源，优化硬件资源的使用，可以促进完善组件和工具的生态系统，以减轻应用程序在公有云或私有云中运行的负担。
+3. 可移植：支持公有云，私有云，混合云，多重云（multi-cloud）
+4. 可扩展：模块化，插件化，可挂载，可组合
+5. 自动化：自动部署，自动重启，自动复制，自动伸缩扩展
+
+--------
+## Architecture
+![Kubernete架构](pictures/kubernete.png)
+以上为Kubernete的架构图。
+
+1. 节点:一个节点是一个运行Kubernetes中的主机。
+2.  容器组：一个Pod对应于由若干容器组成的一个容器组，同个组内的容器共享一个存储卷(volume)。
+3.  容器组生命周期：包含所有容器状态集合，包括容器组状态类型，容器组生命周期，事件，重启策略，以及replication controllers.
+4.  Replication Controllers：主要负责指定数量的pod在同一时间一起运行。
+5.  服务：一个Kubernetes服务是容器组逻辑的高级抽象，同时也对外提供访问容器组的策略。
+6.  卷：一个卷就是一个目录，容器对其有访问权限。
+7. 标签：标签是用来连接一组对象的，比如容器组。标签可以被用来组织和选择子对象。
+8. 接口权限：端口，ip地址和代理的防火墙规则。
+9. web界面：用户可以通过web界面操作Kubernetes。
+10. 命令行操作：kubecfg命令。
+
+----------
+## Pros and cons
+### pros
+ 1. 快速创建/部署应用：与VM虚拟机相比，容器镜像的创建更加容易。
+ 2. 持续开发、集成和部署：提供可靠且频繁的容器镜像构建/部署，并使用快速和简单的回滚(由于镜像不可变性)。
+ 3. 开发和运行相分离：在build或者release阶段创建容器镜像，使得应用和基础设施解耦。
+ 4. 开发，测试和生产环境一致性：在本地或外网（生产环境）运行的一致性。
+ 5. 云平台或其他操作系统：可以在 Ubuntu、RHEL、 CoreOS、on-prem、Google Container Engine或其它任何环境中运行。
+ 6. Looselycoupled，分布式，弹性，微服务化：应用程序分为更小的、独立的部件，可以动态部署和管理。
+ 7. 资源隔离
+ 8. 资源利用：更高效
+ 
+### cons
+1. 由于container本身相较于VM是一个轻量级的实现，尽管从逻辑上我们有namespace、label、pod、container几层的隔离，但事实上包括container本身都是一个基于逻辑意义上的隔离，并没有一个基于软件调用层面的stack划分。更薄的层级关系让性能损耗降到较低。
+2. 由于没有严格的stack划分，资源隔离直接受制于cgroup，用户态隔离则直接受制于kernel中的namespace，不具有严格意义上的逐级隔离。
+3. Kubernete的技术仍然处在早期阶段，还不够成熟，还无法进行规模化的部署来帮助他们的客户提取出容器技术的商业价值
+
+----
+## My comment
+Kubernetes自2014年推出以来，一直保持稳步增长，这要归功于云原生应用的兴起，它的意义在于让云成为云化战略成功的基石，而不是阻碍。在Kubernetes集群中，不同的环境可以通过namespace进行隔离，保证彼此不互相干扰。在Kubernetes集群中，不同的环境可以通过namespace进行隔离，保证彼此不互相干扰。可以说，Kubernetes在像 OpenStack 这样的基础架构即服务（IaaS）和完整的平台即服务（PaaS）的资源之间达到了最佳平衡，它的底层运行时实现完全由供应商控制。
+
+----
+## Reference
+1. [kubernete初探](https://blog.csdn.net/zhongqi0808/article/details/52526710)
+2. [kubernetes中文社区](http://docs.kubernetes.org.cn/227.html)
+3. [Kubernetes为什么会逐渐成为云计算的标准？](https://baijiahao.baidu.com/s?id=1589733376057191100&wfr=spider&for=pc)
