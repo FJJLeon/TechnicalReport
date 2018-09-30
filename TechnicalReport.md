@@ -139,6 +139,9 @@ Apollo是一个高度可扩展协作的集群调度框架，通过分布式架�
  3. [Large-scale cluster management at Google with Borg](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/43438.pdf)
  
  ----
+ ----
+ ----
+ 
  # Kubernete
 ## Characteristics
 1. 它是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。
