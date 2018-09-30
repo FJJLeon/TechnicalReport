@@ -142,7 +142,7 @@ Apollo是一个高度可扩展协作的集群调度框架，通过分布式架�
  ----
  ----
  
- # Kubernete
+ # Kubernetes
 ## Characteristics
 1. 它是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。
 2. 通过Kubernetes，你可以快速部署应用，快速扩展应用，无缝对接新的应用功能，节省资源，优化硬件资源的使用，可以促进完善组件和工具的生态系统，以减轻应用程序在公有云或私有云中运行的负担。
@@ -152,8 +152,8 @@ Apollo是一个高度可扩展协作的集群调度框架，通过分布式架�
 
 --------
 ## Architecture
-![Kubernete架构](pictures/kubernete.png)
-以上为Kubernete的架构图。
+![Kubernetes架构](pictures/kubernete.png)
+以上为Kubernetes的架构图。
 
 1. 节点:一个节点是一个运行Kubernetes中的主机。
 2.  容器组：一个Pod对应于由若干容器组成的一个容器组，同个组内的容器共享一个存储卷(volume)。
@@ -181,7 +181,7 @@ Apollo是一个高度可扩展协作的集群调度框架，通过分布式架�
 ### cons
 1. 由于container本身相较于VM是一个轻量级的实现，尽管从逻辑上我们有namespace、label、pod、container几层的隔离，但事实上包括container本身都是一个基于逻辑意义上的隔离，并没有一个基于软件调用层面的stack划分。更薄的层级关系让性能损耗降到较低。
 2. 由于没有严格的stack划分，资源隔离直接受制于cgroup，用户态隔离则直接受制于kernel中的namespace，不具有严格意义上的逐级隔离。
-3. Kubernete的技术仍然处在早期阶段，还不够成熟，还无法进行规模化的部署来帮助他们的客户提取出容器技术的商业价值
+3. Kubernetes的技术仍然处在早期阶段，还不够成熟，还无法进行规模化的部署来帮助他们的客户提取出容器技术的商业价值
 
 ----
 ## My comment
@@ -189,6 +189,6 @@ Kubernetes自2014年推出以来，一直保持稳步增长，这要归功于云
 
 ----
 ## Reference
-1. [kubernete初探](https://blog.csdn.net/zhongqi0808/article/details/52526710)
+1. [kubernetes初探](https://blog.csdn.net/zhongqi0808/article/details/52526710)
 2. [kubernetes中文社区](http://docs.kubernetes.org.cn/227.html)
 3. [Kubernetes为什么会逐渐成为云计算的标准？](https://baijiahao.baidu.com/s?id=1589733376057191100&wfr=spider&for=pc)
