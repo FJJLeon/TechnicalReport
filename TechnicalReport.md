@@ -91,3 +91,51 @@ Omega，作为Borg的延伸，它的出现是出于提升Borg生态系统软件�
 阿里巴巴作为电子商务交易平台，体量做得很大，尤其是双十一大促销时的巨大流量，对阿里的服务器提出了更高的要求。Sigma集群与资源管理系统的建设与使用很好的解决了这一困境，提供了更好的服务的同时也节省了大量的资源。实现了混部架构将延迟不敏感的批量离线计算任务和延迟敏感的在线服务部署这两种需求资源不同的任务在同一机器上以提高了机器的资源利用率，同时也允许了弹性扩缩来处理脉冲情况。其将全阿里所有的计算资源全部集中在一起统筹管理，得以很好得处理日常计算需求与大促时的高脉冲需求。同时，阿里将系统所用的Pouch容器技术开源，系统也兼容了大量其他系统，促进行业共同健康发展。
 
 516030910006 方俊杰
+
+----
+----
+----
+
+# Apollo
+
+## Characteristics
+1. 采用一种分布式 (*distributed*)和松散协调(*loosely coordinated*)的调度框架。每个调度器综合整个集群的资源利用信息独立地进行调度。
+2. 将任务分配到能使其完成时间最短的服务器上。评估模型综合考虑数据的局部性、服务器负载和其他各种因素，让调度器根据这些因素进行加权决策。随着调度任务的执行，估计模型还可以通过观测到的类似任务的运行数据来对时间估计策略进行优化。
+3. 引入轻量级的硬件独立机制来为调度器提供集群中所有服务器上的资源使用情况。每个调度器都拥有整个集群的信息，掌握了未来短期内每个服务器的可利用资源情况，在此基础上再进行调度决策。
+4. 采用了一系列的校正机制，在运行时动态地调整和优化非最优的调度决策，提出了一种独有的延时修正机制来解决不同调度器之间的决策冲突。
+5. 引入了机会调度策略。Apollo将作业分成了两类，常规作业(*regular tasks*)和机会作业(*opportunistic tasks*)，并使用基于token的机制来管理容量并通过限制常规任务的总数来避免集群的负载过高。
+6. 支持分阶段部署到生产环境和逐步验证。
+
+
+----
+## Architecture
+![Apollo架构](http://m.qpic.cn/psb?/V13Ti98m05LW5b/VKONLDuOCi6o0pzkGE2pRVUZG1yKdAStt9UfBXWD2wk!/b/dDQBAAAAAAAA&bo=ggPwAgAAAAADB1E!&rf=viewer_4)
+
+上图是Apollo的整体架构图。
+
+
+Job Manager（JM）是一个调度器，负责对作业进行调度。每个集群都会拥有一个Resource Monitor（RM），每台服务器都拥有一个Process Node（PN），它们协调工作来为调度器提供整个集群的负载信息，供调度器进行调度决策时使用。每个PN负责对本地服务器的资源进行管理，RM会持续地从集群中每个服务器上的PN那里收集信息，汇总成全局信息后给每个JM。
+
+
+----
+## Pros and Cons
+### Pros
+1. 很好地平衡了可扩展性和调度质量，既消除了传统中心式框架的可扩展性瓶颈和单点故障问题，又避免了完全去中心化架构造成的独立调度器之间产生的冲突。
+2. 独立的调度器拥有整个集群的负载信息并进行作业完成时间估计，使得任务完成时间最小化，保证了相当高的调度质量。
+3. 通过动态调整能够及时处理无法预测的集群变化、不准确的任务运行时间估计以及其它异常运行行为，整个框架十分健壮。
+4. 通过机会调度达到了很高的集群资源利用率。
+5. 支持分阶段部署和验证保障了使用Apollo替换原有框架时业务的正常运行。
+
+### Cons
+1. Apollo使用了低优先级后台任务随机执行的策略来增加集群资源利用率，可能会导致这些任务有较长的延迟。
+2. Apollo在估计任务等待时间时没有利用重现任务（recurring jobs)的统计数据,也没有很好地理解任务的间隔，这也是之后改进工作中的一部分。
+
+----
+## My comment
+Apollo是一个高度可扩展协作的集群调度框架，通过分布式架构保证了可扩展性，同时通过集群状态共享保证了调度的质量。目前，Apollo已被部署在Microsoft的实际生产环境之中，每天负责上万台服务器上数以十亿计的高并发任务的调度和管理，在实际应用中取得了良好的效果，是一个优秀的集群调度框架。
+
+----
+## Reference
+ 1. [Apollo：Scalable and Coordinated Scheduling for Cloud-Scale Computing](https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-boutin_0.pdf)
+ 2. [每周论文·Apollo: Scalable and Coordinated Scheduling for Cloud-Scale Computing](https://blog.csdn.net/violet_echo_0908/article/details/78174782)
+ 3. [Large-scale cluster management at Google with Borg](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/43438.pdf)
