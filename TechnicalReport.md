@@ -58,7 +58,11 @@ Borg是Google的第一代/第二代集群（资源）管理系统，负责权限
 ## My comments
 Omega，作为Borg的延伸，它的出现是出于提升Borg生态系统软件工程的愿望。Omega应用到了很多在Borg内已经被认证的成功的模式，但是是从头开始来搭建以期更为一致的构架。Omega存储了基于Paxos、围绕transaction的集群的状态，能够被集群的控制面板（比如调度器）接触到，使用了优化的进程控制来解决偶尔发生的冲突。这种分离允许Borgmaster的功能被区分成几个并列的组建，而不是把所有变化都放到一个单独的、巨石型的master里。许多Omega的创新（包括多个调度器）都被收录进了Borg.
 
-
+----
+## Reference：
+1. [全方位对比Mesos、Omega和Borg](https://blog.csdn.net/lsjseu/article/details/49664275)
+2. [解析Google集群资源管理系统Omega](http://dongxicheng.org/mapreduce-nextgen/google-omega/)
+3. [Omega: flexible, scalable schedulers for large compute clusters](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/41684.pdf)
 ----
 ----
 ----
