@@ -1,4 +1,4 @@
-# Homework1 Technical Report
+# Homework2 Technical Report
 
 | 姓名 | ID | 学号 | 内容 |
 | ------ | ------ | ------ | ------ |
