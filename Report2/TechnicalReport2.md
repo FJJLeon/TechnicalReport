@@ -1,3 +1,5 @@
+# **Technical Report about CPU、Memory、Storage、Network and xPU**
+
 # CPU
 # vendors: Intel & AMD
 ### &#8195;&#8195;两家公司的成立仅相隔一年，英特尔是名副其实的技术流派，掌握着芯片研发的最高话语权，而AMD则作为以销售主导的公司。
@@ -71,24 +73,24 @@ XDR内存是RDRAM的升级版。依旧由RAMBUS公司推出。XDR就是“eXtrem
 ---
 # Storage
 ## vendors
-* Data Center Storage Companies：数据存储市场领导者,是寻求部署存储区域网络（SAN）或网络附加存储（NAS）技术以及越来越多的混合云存储解决方案的企业的首选公司  
+* **Data Center Storage Companies**：数据存储市场领导者,是寻求部署存储区域网络（SAN）或网络附加存储（NAS）技术以及越来越多的混合云存储解决方案的企业的首选公司  
 1. Dell EMC
 2. HPE
 3. NetApp
 4. IBM
 5. Hitachi Vantara
 6. Huawei
-* Data Storage Companies: 精英企业，这些企业为企业客户提供了自己的存储解决方案
+* **Data Storage Companies**: 精英企业，这些企业为企业客户提供了自己的存储解决方案
 1. Oracle
 2. Lenovo
 3. Fujitsu
 4. Western Digital
-* All-Flash Upstart Storage Companies：专注于支持全闪存的阵列储存,有助于设定新的应用程序和数据库性能标准
+* **All-Flash Upstart Storage Companies**：专注于支持全闪存的阵列储存,有助于设定新的应用程序和数据库性能标准
 1. Pure Storage
 2. Violin Systems
 3. Tegile
 4. Kaminario
-* Hyperconverged Storage Companies: 超融合存储基础架构将存储，计算和网络结合到高度虚拟化系统,采用软件定义的横向扩展方法来实现系统和工作负载管理，为企业如何运行和管理存储工作负载提供了极大的灵活性
+* **Hyperconverged Storage Companies**: 超融合存储基础架构将存储，计算和网络结合到高度虚拟化系统,采用软件定义的横向扩展方法来实现系统和工作负载管理，为企业如何运行和管理存储工作负载提供了极大的灵活性
 1. Nutanix
 2. Pivot 3
 3. HPE SimpliVity
@@ -98,21 +100,21 @@ XDR内存是RDRAM的升级版。依旧由RAMBUS公司推出。XDR就是“eXtrem
 1. **File Storage**：为多个客户端提供访问单个共享文件夹的能力  
 组织方式：数据文件被组织为结构化命名目录   
 适合用例：档案共享、大数据、影音文件等
-2. **Block Storage**：提供对等效原始块设备的网络访问
+2. **Block Storage**：提供对等效原始块设备的网络访问  
 组织方式：数据通常以固定大小的块存储在设备上  
 适合用例：频繁变化内容、随机读写、突发I / O
-3. **Object Storage**：通过REST API调用提交对象，并返回标识符
+3. **Object Storage**：通过REST API调用提交对象，并返回标识符  
 组织方式：对象数据具有URL或ObjectID的句柄  
 适用用例：云储存、无服务器容器存储、分析和物联网、机器（深度）学习
 
 * 根据储存介质的不同，基本可分为以下几类
 1. **磁存储HDD**：在一些磁性介质上以正和负磁极的模式编码数据，具有机械部件  
-容量：存储容量范围从MB到数百TB
+容量：存储容量范围从MB到数百TB  
 优点：廉价、可靠  
 缺点：碰撞易损坏  
 2. **光存储**：使用激光/光学反射现象来读取或写入数据  
-容量：CD-数百MB  DVD-可达几十GB
-优点：每盘低成本
+容量：CD-数百MB  DVD-可达几十GB  
+优点：每盘低成本  
 缺点：寿命相对较短,不可靠   
 3. **固态存储SSD**：使用非易失性存储器,仅依靠半导体和电子设备进行数据存储  
 容量：数十GB到TB  
