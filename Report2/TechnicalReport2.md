@@ -67,3 +67,81 @@ XDR内存是RDRAM的升级版。依旧由RAMBUS公司推出。XDR就是“eXtrem
 
 ## my comment(example of tradeoff)
   市场上常见的SDRAM品牌有现代、三星、LG、NEC、东芝、西门子、TI(德州仪器)等等。购买时应注意观察芯片表面印字是否清晰，标称速度为多少以及产地。需要特别说明的是上面所说的品牌仅仅是指内存芯片，而不是整个内存条，将内存芯片封装在电路板上制成内存条的工作是由其他厂商完成的。例如著名的美国金仕顿内存只是封装其他厂商的优质内存芯片制成的，它本身并不生产内存芯片。所以，即使采用同一品牌芯片的内存条，由于封装厂商不一，质量也会存在很大差异，这可以从电路板的工艺上看出。好的电路板，外观看上去颜色均匀、表面光滑、边缘整齐无毛边，采用六层板结构且手感较重。主流的LGS内存已经被HY内存取代，虽然牌子换了，但是东西还是一样的，常见的型号是GM72V66841ET7J，是8×8的颗粒。记得买的内存颗粒型号是GM72V66841CT7J，和的内存一样。市场上的PC-133条子的CAS参数基本上都是3，想买真正CAS参数为2的PC133内存条还要等一段时间。KINGMAX内存和樵风）的金条也是不错的选择，是那种内存都采用专利的封装技术，所以不会碰到假货。
+
+---
+# Storage
+## vendors
+* Data Center Storage Companies：数据存储市场领导者,是寻求部署存储区域网络（SAN）或网络附加存储（NAS）技术以及越来越多的混合云存储解决方案的企业的首选公司  
+1. Dell EMC
+2. HPE
+3. NetApp
+4. IBM
+5. Hitachi Vantara
+6. Huawei
+* Data Storage Companies: 精英企业，这些企业为企业客户提供了自己的存储解决方案
+1. Oracle
+2. Lenovo
+3. Fujitsu
+4. Western Digital
+* All-Flash Upstart Storage Companies：专注于支持全闪存的阵列储存,有助于设定新的应用程序和数据库性能标准
+1. Pure Storage
+2. Violin Systems
+3. Tegile
+4. Kaminario
+* Hyperconverged Storage Companies: 超融合存储基础架构将存储，计算和网络结合到高度虚拟化系统,采用软件定义的横向扩展方法来实现系统和工作负载管理，为企业如何运行和管理存储工作负载提供了极大的灵活性
+1. Nutanix
+2. Pivot 3
+3. HPE SimpliVity
+
+## types and technologies
+* 根据储存服务在客户端访问接口的不同，可分为以下三类
+1. **File Storage**：为多个客户端提供访问单个共享文件夹的能力  
+组织方式：数据文件被组织为结构化命名目录   
+适合用例：档案共享、大数据、影音文件等
+2. **Block Storage**：提供对等效原始块设备的网络访问
+组织方式：数据通常以固定大小的块存储在设备上  
+适合用例：频繁变化内容、随机读写、突发I / O
+3. **Object Storage**：通过REST API调用提交对象，并返回标识符
+组织方式：对象数据具有URL或ObjectID的句柄  
+适用用例：云储存、无服务器容器存储、分析和物联网、机器（深度）学习
+
+* 根据储存介质的不同，基本可分为以下几类
+1. **磁存储HDD**：在一些磁性介质上以正和负磁极的模式编码数据，具有机械部件  
+容量：存储容量范围从MB到数百TB
+优点：廉价、可靠  
+缺点：碰撞易损坏  
+2. **光存储**：使用激光/光学反射现象来读取或写入数据  
+容量：CD-数百MB  DVD-可达几十GB
+优点：每盘低成本
+缺点：寿命相对较短,不可靠   
+3. **固态存储SSD**：使用非易失性存储器,仅依靠半导体和电子设备进行数据存储  
+容量：数十GB到TB  
+优点：更快的I/O性能,更坚固可靠,更少的功率  
+缺点：相对昂贵,存储空间相对HDD较小  
+
+## Key indicatiors
+* 对于企业级客户来说储存服务的关键指标在于**储存容量、适合内容、读写速率、延迟、价格**等方面，可以从以下图片看到顶尖全闪存储存供应商的指标比较：  
+![TopFlashCompaniesComparison](pictures/TopFlashCompaniesComparison.png)
+
+* 对于单一储存盘来说,其关键指标有**硬盘容量、硬盘速度、接口类型、缓存、IOPS、带宽、响应时间、价格等**，其中  
+1. IOPS：I/O per second，即每秒钟可以处理的I/O个数，用来衡量存储系统的I/O处理能力
+2. 带宽：每秒钟可以处理的数据量，用于衡量存储系统的吞吐量，常以KB/S或MB/s或GB/s为单位
+3. 响应时间：发起I/O请求到I/O处理完成的时间间隔，常以毫秒（ms）为单位   
+以上指标可以用如dd、fio、IOMeter、AS SSD、CrystalDiskInfo等测试工具测试获取
+
+## My Comment
+1. CEPH
+2. 
+## reference
+* Sage A. Weil, Scott A. Brandt, Ethan L. Miller, Darrell D. E. Long. Ceph: A Scalable, High-Performance Distributed File System. OSDI, 2006
+* http://www.enterprisestorageforum.com/products/20-top-enterprise-data-storage-vendors.html
+* https://blog.ubuntu.com/2015/05/18/what-are-the-different-types-of-storage-block-object-and-file
+* https://www.snia.org/sites/default/files/ESF/SNIA-Block-File-Object-Storage-Webcast-Final.pdf
+* https://medium.com/computing-technology-with-it-fundamentals/storage-technologies-and-their-devices-1594293868f0
+* http://typesofbackup.com/types-of-storage/
+* http://www.enterprisestorageforum.com/products/best-flash-storage-all-flash-storage-array-vendors.html
+* https://cn.aliyun.com/jiaocheng/154982.html
+* https://blog.csdn.net/lin443514407lin/article/details/55102167
+
+
+
