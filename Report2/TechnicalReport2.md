@@ -127,21 +127,27 @@ XDR内存是RDRAM的升级版。依旧由RAMBUS公司推出。XDR就是“eXtrem
 1. IOPS：I/O per second，即每秒钟可以处理的I/O个数，用来衡量存储系统的I/O处理能力
 2. 带宽：每秒钟可以处理的数据量，用于衡量存储系统的吞吐量，常以KB/S或MB/s或GB/s为单位
 3. 响应时间：发起I/O请求到I/O处理完成的时间间隔，常以毫秒（ms）为单位   
-以上指标可以用如dd、fio、IOMeter、AS SSD、CrystalDiskInfo等测试工具测试获取
+>以上指标可以用如dd、fio、IOMeter、AS SSD、CrystalDiskInfo等测试工具测试获取,而价格等方面可以查询官方销售店铺
 
 ## My Comment
-1. CEPH
-2. 
+1. CEPH：描述了一个高性能、高可靠、可扩展分布式文件系统，其主要组件有Client、OSD集群、MDS，其中Client暴露POSIX接口，OSD集群集中智能储存数据和元素据，MDS集中管理处理命名空间元数据操作。通过使用专为异构和动态集群系统设计的伪随机数据分布函数（CRUSH）替代分配表来计算任何对象的分发和储存位置，避免了负载不均衡不对称的问题，不依赖块或对象元数据列表。通过使用Dynamic Subtree Partitioning提供负载分布的加权树,定期比较动态迁移以在保有局部性的同时促进积极预取以有效利用MDS资源提高性能。CEPH提出并实现的新技术以提高分布式系统的可扩展性、吞吐量、性能、可靠性为目标，提供高效的元数据管理，并有效提高系统在数据储存、复制及删除、故障检测及恢复的能力。  
+CEPH的作者以此为基础创立了Inktank公司，旨在为开源Ceph存储系统提供专业服务和支持，使Ceph成为一个基础广泛的协作开源项目与充满活力的用户，开发人员和商业社区。公司创立后备受好评，被列入2012年CRN 10热门新兴供应商，并在2014年被Red Hat高价收购。可见Ceph所描述的文件系统是有很高价值与活力的，并在为世界提供更好的更优质的存储服务的路上不断努力。
+2. 世界正走在不断互联的路上，由此产生了大量的数据，物联网、大数据、数据挖掘等名词不断出现并变得火热，有人在不断产生数据，有人在不断利用数据，而这一切都需要以拥有一个强大的数据存储系统为前提，越来越大量的数据保存与读取都在对存储系统提出更高的要求，想要更快的速度，更高的并发，更好的安全。无论是要怎样利用数据，都需要先选择使用怎么的存储系统，选择的根本要根据需求来定，需要存储怎样的数据，是文本还是视频，是结构化的还是非结构化的，需要怎样的访问负载，需要怎样的容量要求，需要怎样的安全要求，以此来做出权衡，选取合适的存储系统。
+
+
 ## reference
-* Sage A. Weil, Scott A. Brandt, Ethan L. Miller, Darrell D. E. Long. Ceph: A Scalable, High-Performance Distributed File System. OSDI, 2006
-* http://www.enterprisestorageforum.com/products/20-top-enterprise-data-storage-vendors.html
-* https://blog.ubuntu.com/2015/05/18/what-are-the-different-types-of-storage-block-object-and-file
-* https://www.snia.org/sites/default/files/ESF/SNIA-Block-File-Object-Storage-Webcast-Final.pdf
-* https://medium.com/computing-technology-with-it-fundamentals/storage-technologies-and-their-devices-1594293868f0
-* http://typesofbackup.com/types-of-storage/
-* http://www.enterprisestorageforum.com/products/best-flash-storage-all-flash-storage-array-vendors.html
-* https://cn.aliyun.com/jiaocheng/154982.html
-* https://blog.csdn.net/lin443514407lin/article/details/55102167
+* [Sage A. Weil, Scott A. Brandt, Ethan L. Miller, Darrell D. E. Long. Ceph: A Scalable, High-Performance Distributed File System. OSDI, 2006](https://www.ssrc.ucsc.edu/Papers/weil-osdi06.pdf)
+* [20 Top Enterprise Data Storage Vendors](http://www.enterprisestorageforum.com/products/20-top-enterprise-data-storage-vendors.html)
+* [What are the different types of storage: block, object and file?](https://blog.ubuntu.com/2015/05/18/what-are-the-different-types-of-storage-block-object-and-file)
+* [SNIA-Block-File-Object-Storage-Webcast-Final](https://www.snia.org/sites/default/files/ESF/SNIA-Block-File-Object-Storage-Webcast-Final.pdf)
+* [Storage Technologies and their Devices](https://medium.com/computing-technology-with-it-fundamentals/storage-technologies-and-their-devices-1594293868f0)
+* [Types of Storage](http://typesofbackup.com/types-of-storage/)
+* [Best Flash Storage: Top 10 All-Flash Storage Array Vendors](http://www.enterprisestorageforum.com/products/best-flash-storage-all-flash-storage-array-vendors.html)
+* [几种硬盘IO性能测试工具](https://cn.aliyun.com/jiaocheng/154982.html)
+* [性能指标之资源指标-磁盘](https://blog.csdn.net/lin443514407lin/article/details/55102167)
+* [Inktank Storage](https://en.wikipedia.org/wiki/Inktank_Storage)
+* [Red Hat to acquire Inktank](https://ceph.com/geen-categorie/red-hat-to-acquire-inktank/)
+* [Red Hat Ceph Storage](https://www.redhat.com/en/technologies/storage/ceph)
 
 
 
