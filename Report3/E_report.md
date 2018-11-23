@@ -23,7 +23,7 @@
 ### Samza
 #### Samza最早是由LinkedIn提出的与Kafka协同工作的优秀地流解决方案，Samza已经是LinkedIn内部关键的基础设施之一。Samza重负依赖于Kafaka的基于日志的机制，二者结合地非常好。Samza提供了Compositional接口，并且也支持Scala。
 
-![avatar](/pictures/E1.jpg)
+![avatar](pictures/E1.jpg)
 
 ## 评价
 ### 流处理模式是面向动态数据的细粒度处理模式，这种模式的处理延迟最低，适合用于监控系统、在线金融分析、算法交易等对实时性要求较高的应用场景。此模式在面向动态数据的实时处理领域有着不可替代的地位。
