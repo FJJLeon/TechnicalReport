@@ -98,8 +98,8 @@
 - 测试项目
    分别测试1到3个Consumer时的集群总吞吐量
 - 测试脚本
-    > /bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 1 --topic D1 --messages 1000000
-    >./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 2 --topic D1 --messages 1000000
+    > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 1 --topic D1 --messages 1000000
+    > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 2 --topic D1 --messages 1000000
     > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 3 --topic D1 --messages 1000000
 - 测试结果
     Consumer number | MB/S | nMsg/S
