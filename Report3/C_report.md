@@ -17,6 +17,7 @@
     > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 2000 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667　    
     > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 5000 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
 - 测试结果
+
     | Message size | MB/S | Records/S |
 	| ----|------|---- |
 	| 100 | 60.86  | 638162.0932 |
@@ -55,6 +56,7 @@
     > ./bin/kafka-producer-perf-test.sh --topic p8 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667     
     > ./bin/kafka-producer-perf-test.sh --topic p9 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
 - 测试结果
+
     | Partition number | MB/S | Records/S |
 	| ----|------|---- |
 	| 1 | 43.12  | 526381.5568 |
@@ -83,6 +85,7 @@
     > ./bin/kafka-producer-perf-test.sh --topic r2 --num-records 1000000  --throughput 1000000 --record-size 500 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667  
     > ./bin/kafka-producer-perf-test.sh --topic r3 --num-records 1000000  --throughput 1000000 --record-size 500 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667
 - 测试结果
+
     | Replica number | MB/S | Records/S |
 	| ----|------|---- |
 	| 1 | 42.25  | 443066.0168 |
@@ -102,6 +105,7 @@
     > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 2 --topic D1 --messages 1000000  
     > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 3 --topic D1 --messages 1000000
 - 测试结果
+
     | Consumer number | MB/S | nMsg/S |
 	| ----|------|---- |
 	| 1 | 64.49  | 676132.522 |
