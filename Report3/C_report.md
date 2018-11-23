@@ -9,12 +9,12 @@
 - 创建Topic
     > ./bin/kafka-topics.sh –create –zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181      –replication-factor 1 –partitions 6 –topic D1
 - 测试脚本
-    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 200 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 400 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 800 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 1000 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 2000 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667　
+    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667  
+    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 200 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667  
+    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 400 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667  
+    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 800 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667  
+    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 1000 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667 
+    > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 2000 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667　    
     > ./bin/kafka-producer-perf-test.sh --topic D1 --num-records 10000  --throughput 10000 --reco-size 5000 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
 - 测试结果
     Message size | MB/S | Records/S
@@ -35,25 +35,25 @@
 - 测试项目
    分别测试1到9个Partition时的吞吐量 
 - 创建Topic
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 1 --topic p1
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 2 --topic p2
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 3 --topic p3
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 4 --topic p4
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 5 --topic p5
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 6 --topic p6
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 7 --topic p7
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 8 --topic p8
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 1 --topic p1    
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 2 --topic p2    
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 3 --topic p3    
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 4 --topic p4    
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 5 --topic p5    
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 6 --topic p6    
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 7 --topic p7    
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 8 --topic p8    
     > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 9 --topic p9
 - 测试脚本
-    > ./bin/kafka-producer-perf-test.sh --topic p1 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic p2 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic p3 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic p4 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic p5 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic p6 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic p7 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic p8 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic p9 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic p1 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic p2 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic p3 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic p4 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic p5 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic p6 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic p7 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic p8 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic p9 --num-records 1000000  --throughput 1000000 --record-size 100 --producer-props    bootstrap.servers=storage-1.sinocbd.local:6667
 - 测试结果
     Partition number | MB/S | Records/S
 	----|------|----
@@ -75,12 +75,12 @@
 - 测试项目
    分别测试1到3个Replica时的吞吐量
 - 创建Topic
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 1 --topic r1
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 2 --partitions 1 --topic r2
-    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 3 --partitions 1 --topic r3
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 1 --partitions 1 --topic r1    
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 2 --partitions 1 --topic r2    
+    > ./bin/kafka-topics.sh --create --zookeeper storage-1.sinocbd.local:2181,storage-2.sinocbd.local:2181,storage-3.sinocbd.local:2181 --replication-factor 3 --partitions 1 --topic r3    
 - 测试脚本
-    > ./bin/kafka-producer-perf-test.sh --topic r1 --num-records 1000000  --throughput 1000000 --record-size 500 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667
-    > ./bin/kafka-producer-perf-test.sh --topic r2 --num-records 1000000  --throughput 1000000 --record-size 500 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667
+    > ./bin/kafka-producer-perf-test.sh --topic r1 --num-records 1000000  --throughput 1000000 --record-size 500 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667  
+    > ./bin/kafka-producer-perf-test.sh --topic r2 --num-records 1000000  --throughput 1000000 --record-size 500 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667  
     > ./bin/kafka-producer-perf-test.sh --topic r3 --num-records 1000000  --throughput 1000000 --record-size 500 --producer-props bootstrap.servers=storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667
 - 测试结果
     Replica number | MB/S | Records/S
@@ -98,8 +98,8 @@
 - 测试项目
    分别测试1到3个Consumer时的集群总吞吐量
 - 测试脚本
-    > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 1 --topic D1 --messages 1000000
-    > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 2 --topic D1 --messages 1000000
+    > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 1 --topic D1 --messages 1000000  
+    > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 2 --topic D1 --messages 1000000  
     > ./bin/kafka-consumer-perf-test.sh --broker-list storage-1.sinocbd.local:6667,storage-2.sinocbd.local:6667,storage-3.sinocbd.local:6667 --threads 3 --topic D1 --messages 1000000
 - 测试结果
     Consumer number | MB/S | nMsg/S
