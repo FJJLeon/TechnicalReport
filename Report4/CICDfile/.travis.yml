@@ -1,0 +1,41 @@
+sudo: required
+
+language: java
+
+jdk:
+  - oraclejdk8
+
+services:
+  - mysql
+  - docker
+
+env:
+  global:
+    - MYSQL_PWD=mysqlPWD
+    - REGISTRY_USER=fjjleonrobot
+    - REGISTRY_PWD=fangjunjie1998
+before_install:
+  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('fangjj1998') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+  - mysql -u root --password="fangjj1998" < sqlscript/all2.sql
+  - sudo service mysql restart
+
+install: 
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true
+
+before_script:
+  - docker build --tag fjjleon/bookstore .
+  - docker run fjjleon/bookstore
+
+script: 
+  - docker images
+  - mvn test
+
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PWD"
+
+deploy:
+  provider: script
+  script: docker push fjjleon/bookstore
+  on:
+    branch: master
+  
