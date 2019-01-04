@@ -58,7 +58,7 @@ deploy:
 * [dockerfile 介绍](https://www.cnblogs.com/boshen-hzb/p/6400272.html)
 * [Coding Tips: Patterns for Continuous Integration with Docker on Travis CI](https://medium.com/mobileforgood/coding-tips-patterns-for-continuous-integration-with-docker-on-travis-ci-9cedb8348a62)
 
-```
+
 
 # Requirement 2
 
@@ -67,4 +67,3 @@ deploy:
 ### DNS 只要在部署配置文件时，在addons中部署路由器规则即可。
 ### Dashboard 同样只需配置好官网的yaml文件即可。
 
-```
