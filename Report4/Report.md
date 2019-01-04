@@ -58,7 +58,19 @@ deploy:
 
 10. 类似后端项目的CICD配置过程，为前端项目添加CICD，其中项目打包脚本，Dockerfile需要作相应修改，使用 **npm** 打包项目，基础镜像使用 **nginx**，新建了docker hub仓库储存前端镜像。
 
-
+11. 暂时使用的mysql是Host的 mysql 服务，在mysql上安装MySQL服务,中间为root设置密码为 fangjj1998，否则可能jdbc还是无法访问。另外需要运行sql脚本导入数据
+```
+sudo apt-get update
+sudo apt-get install mysql-server
+可以执行 mysql_secure_installation 第一个 y， 后面全部回车
+systemctl status mysql.service
+mysql -u root --password "fangjj1998" < all2.sql
+```
+12. 在docker pull 之后要 docker run 时使用，使用了HOST的网段，做法不是很好，需要改进，或者加 (-d)以守护进程运行
+```
+sudo docker run -p 8200:8080 -p 3306:3306  --network="host" fjjleon/bookstore
+```
+13. 在浏览器访问 http://localhost:8080/Mybk-iteration3/#/ 可以渲染出界面，但是点击 Get Books 在 Console 控制台看到了数据，但是没有渲染，考虑肯恶搞是浏览器问题
 ## Reference
 * [TravisCI: Setup MySQL Tables+Data before running Tests](https://andidittrich.de/2017/06/travisci-setup-mysql-tablesdata-before-running-tests.html)
 * [Setting up Databases Travis.CI docs](https://docs.travis-ci.com/user/database-setup/#mysql)
