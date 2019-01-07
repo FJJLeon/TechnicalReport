@@ -1,4 +1,4 @@
-﻿# Requirement 1
+# Requirement 1
 ### prepare a CI/CD environment
 ### Prepare a web app, build contain image
 ### Automatically build images after a PR
@@ -88,3 +88,27 @@ sudo docker run -p 8200:8080 -p 3306:3306  --network="host" fjjleon/bookstore
 ### DNS 只要在部署配置文件时，在addons中部署路由器规则即可。
 ### Dashboard 同样只需配置好官网的yaml文件即可。
 
+# Requirement 3
+# Load Balance
+## measure the reponse time of different scale
+# 初始状态：replica = 1
+![avatar](./pictures/initconfig.jpg)
+![avatar](./pictures/init.jpg)
+### get pods得到frontend1个pod
+### 此时使用jmeter加压，使用response time graph查看RPS增长情况 jmeter安装配置略
+### 20s逐渐启动20个线程，循环访问test:32001端口获取前端，执行60s。
+### 得到其增长曲线如下
+![avatar](./pictures/1rep.jpg)
+# 修改yaml文件后执行kubectl apply -f front_dm.yaml 
+# replica=2重复以上步骤
+![avatar](./pictures/2init.jpg)
+## 结果如下
+![avatar](./pictures/2rep.jpg)
+## 考虑网络波动和其他原因，我们关注曲线下方较平滑的位置，可见其平均RPS处于100ms左右，2pods明显低于1pod时的RPS。
+# replica=3重复以上步骤
+![avatar](./pictures/3init.jpg)
+## 结果如下
+![avatar](./pictures/3rep.jpg)
+## 可见3pods时平均RPS略微低于2pods时的RPS，且更加平滑。
+
+## 故两个实例可以满足峰值情况下正常平均RPS不高于500ms。
