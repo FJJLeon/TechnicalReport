@@ -89,6 +89,14 @@ sudo docker run -p 8200:8080 -p 3306:3306  --network="host" fjjleon/bookstore
 ### Dashboard 同样只需配置好官网的yaml文件即可。
 
 # Requirement 3
+* 在腾讯云上部署kubernetes集群  
+服务器环境：  
+  * master节点：Ubuntu 16.04.1 LTS (GNU/Linux 2核 4G内存)  
+  * node节点：Ubuntu 16.04.1 LTS (GNU/Linux 1核 1G内存)
+
+
+
+# Requirement 4
 # Load Balance
 ## measure the reponse time of different scale
 # 初始状态：replica = 1
