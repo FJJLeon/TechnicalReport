@@ -100,7 +100,48 @@ sudo docker run -p 8200:8080 -p 3306:3306  --network="host" fjjleon/bookstore
 * 在腾讯云上部署kubernetes集群  
 服务器环境：  
   * master节点：Ubuntu 16.04.1 LTS (GNU/Linux 2核 4G内存)  
-  * node节点：Ubuntu 16.04.1 LTS (GNU/Linux 1核 1G内存)
+  * node节点：Ubuntu 16.04.1 LTS (GNU/Linux 1核 1G内存)  
+
+## 数据库部署：  
+使用deployment部署MySQL的pod，并对外暴露32000端口  
+```
+IN MASTER:
+kubectl apply -f mysql-dm.yaml
+kubectl apply -f mysql-svc.yaml
+
+IN YOUR OWN COMPUTER: 
+mysql -h[Master's public Ip] -P32000 -uroot -p[Mysql Password]
+
+mysql> 
+
+```
+然后进入MySQL命令行模式，输入sql脚本。
+
+## 前端部署：
+使用deployment对它进行部署，对外暴露32001端口。
+```
+IN MASTER:
+kubectl apply -f front-dm.yaml
+kubectl apply -f front-svc.yaml
+```
+##后端部署：
+同样使用deployment进行部署,对外暴露32002端口  
+进行ingress配置，即将www.test.com时将流量转发给service，同时在自己的主机上 /etc/hosts文件里增加hosts->public IP的映射
+```
+IN MASTER:
+kubectl apply -f back-ingress.yaml
+kubectl apply -f back-dm-yaml
+kubectl apply -f back-svc.yaml
+
+```
+## Demo:
+![avatar](./pictures/dep1.png)
+
+then cleck button "Get Books"  
+![avatar](./pictures/dep2.png)
+
+于是现在实现了“deploy your web application on kubernetes”
+
 
 
 
