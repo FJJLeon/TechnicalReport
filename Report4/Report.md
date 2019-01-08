@@ -97,10 +97,59 @@ sudo docker run -p 8200:8080 -p 3306:3306  --network="host" fjjleon/bookstore
 ### Dashboard 同样只需配置好官网的yaml文件即可。
 
 # Requirement 3
-* 在腾讯云上部署kubernetes集群  
-服务器环境：  
+## 在腾讯云服务器创建集群  
+* 服务器环境：  
   * master节点：Ubuntu 16.04.1 LTS (GNU/Linux 2核 4G内存)  
-  * node节点：Ubuntu 16.04.1 LTS (GNU/Linux 1核 1G内存)  
+  * node节点：Ubuntu 16.04.1 LTS (GNU/Linux 1核 1G内存)
+
+* 安装指定版本的docker：  
+      https://releases.rancher.com/install-docker/17.03.sh  
+      卸载掉之前版本的docker后运行该脚本即可安装17.03版本的docker
+* 配置ssh  
+  ssh-keygen生成密匙，在/etc/hosts目录下加入其他节点的内网IP（因为腾讯云的主机同一个地区同一个用户是有内网连接的路由规则的）  
+  在ssh-copy-id [hostname]将公匙发送给相应主机，此时就能免密ssh连接，即满足rke的需求
+* 配置rke config  
+  rke的cluster.yml是一个高度集成的配置文件，通过./rke up --config [config-file]即可一键部署。config参数默认为同目录下的cluster.yml,可以手动设置。如果最后一行是 Finished building Kubernetes cluster successfully 代表集群创建成功。
+  ```
+  //cluster.yml
+  nodes:
+  - address: 172.17.16.6
+    user: ubuntu
+    role: [controlplane,etcd,worker]
+    ssh_key_path: ~/.ssh/id_rsa
+  - address: 172.17.0.12
+    user: cse
+    role: [worker]
+    ssh_key_path: ~/.ssh/id_rsa
+  network:
+  plugin: flannel
+  system_images:
+    flannel: rancher/coreos-flannel:v0.9.1
+  ```  
+  创建成功后运行
+  ```
+  cp kube_config_cluster.yml ${HOME}/.kube/config
+  chmod 777 ${HOME}/.kube/config
+  ```
+  这是将新生成的集群配置文件放入正确的位置，让知乎kubectl的使用免参数
+* 安装kubctl  
+  在官方提供的URL里下载即可：  
+  https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md#client-binaries-1   
+  下载完成后，运行以下shell命令：
+  ```
+  tar -zxvf kubernetes-client-linux-amd64.tar.gz
+  sudo mv /kubernetes/client/bin/kubectl /usr/local/bin/kubectl
+  ```     
+    此时就安装成功，使用方法如下：
+    ```
+    kubectl version
+    kubectl get nodes//查看节点信息
+    kubectl get pods,svc//查看pods与service情况
+    kubectl apply -f [yaml-file]//部署应用
+    ```
+
+## 在kubernetes集群上部署应用
+  
 
 ## 数据库部署：  
 使用deployment部署MySQL的pod，并对外暴露32000端口  
@@ -124,7 +173,7 @@ IN MASTER:
 kubectl apply -f front-dm.yaml
 kubectl apply -f front-svc.yaml
 ```
-##后端部署：
+## 后端部署：
 同样使用deployment进行部署,对外暴露32002端口  
 进行ingress配置，即将www.test.com时将流量转发给service，同时在自己的主机上 /etc/hosts文件里增加hosts->public IP的映射
 ```
@@ -132,7 +181,6 @@ IN MASTER:
 kubectl apply -f back-ingress.yaml
 kubectl apply -f back-dm-yaml
 kubectl apply -f back-svc.yaml
-
 ```
 ## Demo:
 ![avatar](./pictures/dep1.png)
