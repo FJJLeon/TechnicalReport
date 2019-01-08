@@ -1,4 +1,4 @@
-# Requirement 1
+﻿# Requirement 1
 ### prepare a CI/CD environment
 ### Prepare a web app, build contain image
 ### Automatically build images after a PR
@@ -54,7 +54,7 @@ deploy:
 8. 完成配置后，有新的代码变更时Travis.CI就会自动进行CICD，构建image发布到Docker Hub上。
 * PS: WEBAPP不是前后端分离的，配合k8s的部分会出现问题
 
-9. 修改webapp项目使其前后端分离，使用了 **nginx** 运行前端静态页面，其中涉及了**跨域访问**的问题，这里配置了反向代理，由nginx服务器转发相应跨域访问请求。配置时注意会出现到端口号无法使用的情况，修改使用其他端口。详细配置文件见[前端项目文件nginx.conf](https://github.com/FJJLeon/k8s-bookstore-front/blob/master/nginx.conf)
+9. 修改webapp项目使其前后端分离，使用了 **nginx** 运行前端静态页面，其中涉及了**跨域访问**的问题，~~这里配置了反向代理，由nginx服务器转发相应跨域访问请求。配置时注意会出现到端口号无法使用的情况，修改使用其他端口~~，nginx反向代理存在问题，改为直接由ajax访问后端api，配合后端加入了cors的配置。详细配置文件见[前端项目文件nginx.conf](https://github.com/FJJLeon/k8s-bookstore-front/blob/master/nginx.conf)
 
 10. 类似后端项目的CICD配置过程，为前端项目添加CICD，其中项目打包脚本，Dockerfile需要作相应修改，使用 **npm** 打包项目，基础镜像使用 **nginx**，新建了docker hub仓库储存前端镜像。
 
@@ -70,7 +70,13 @@ mysql -u root --password "fangjj1998" < all2.sql
 ```
 sudo docker run -p 8200:8080 -p 3306:3306  --network="host" fjjleon/bookstore
 ```
-13. 在浏览器访问 http://localhost:8080/Mybk-iteration3/#/ 可以渲染出界面，但是点击 Get Books 在 Console 控制台看到了数据，但是没有渲染，考虑肯恶搞是浏览器问题
+13. 在浏览器访问 http://localhost:8080/Mybk-iteration3/#/ 可以渲染出界面，但是点击 Get Books 在 Console 控制台看到了数据，但是没有渲染，考虑是浏览器问题
+
+14. 不使用nginx的反向代理，跨域访问需要在后端里加入 **cors** 的 [config](https://github.com/FJJLeon/k8s-bookstore/blob/master/src/main/java/mybk3/config/CorsConfig.java)
+
+15. 使用 Tomcat 运行 war 包以部署时，无论是访问静态网页还是访问api都要加上 war 包名，形如 [ip]:[port]/[war包名(不包括.war)]/[api]
+
+16. 数据库配置完成后在mysql的shell 可以直接手动复制粘贴初始化数据，注意账户与后端JDBC一致
 ## Reference
 * [TravisCI: Setup MySQL Tables+Data before running Tests](https://andidittrich.de/2017/06/travisci-setup-mysql-tablesdata-before-running-tests.html)
 * [Setting up Databases Travis.CI docs](https://docs.travis-ci.com/user/database-setup/#mysql)
@@ -79,7 +85,9 @@ sudo docker run -p 8200:8080 -p 3306:3306  --network="host" fjjleon/bookstore
 * [Coding Tips: Patterns for Continuous Integration with Docker on Travis CI](https://medium.com/mobileforgood/coding-tips-patterns-for-continuous-integration-with-docker-on-travis-ci-9cedb8348a62)
 * [用nginx的反向代理机制解决前端跨域问题](https://www.cnblogs.com/gabrielchen/p/5066120.html)
 * [From inside of a Docker container, how do I connect to the localhost of the machine?](https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach)
+* [Deploy a Spring Boot WAR into a Tomcat Server](https://www.baeldung.com/spring-boot-war-tomcat-deploy)
 * [How-can-I-run-SQL-file-in-Ubuntu](https://www.quora.com/How-can-I-run-SQL-file-in-Ubuntu)
+* [SpringBoot配置Cors解决跨域请求问题](https://www.cnblogs.com/yuansc/p/9076604.html)
 
 # Requirement 2
 
