@@ -1,4 +1,4 @@
-# Requirement 1
+﻿# Requirement 1
 ### prepare a CI/CD environment
 ### Prepare a web app, build contain image
 ### Automatically build images after a PR
@@ -70,7 +70,11 @@ mysql -u root --password "fangjj1998" < all2.sql
 ```
 sudo docker run -p 8200:8080 -p 3306:3306  --network="host" fjjleon/bookstore
 ```
-13. 在浏览器访问 http://localhost:8080/Mybk-iteration3/#/ 可以渲染出界面，但是点击 Get Books 在 Console 控制台看到了数据，但是没有渲染，考虑肯恶搞是浏览器问题
+13. 在浏览器访问 http://localhost:8080/Mybk-iteration3/#/ 可以渲染出界面，但是点击 Get Books 在 Console 控制台看到了数据，但是没有渲染，考虑是浏览器问题
+
+14. 不使用nginx的反向代理，跨域访问需要在后端里加入 **cors** 的 [config](https://github.com/FJJLeon/k8s-bookstore/blob/master/src/main/java/mybk3/config/CorsConfig.java)
+
+15. 使用 Tomcat 运行 war 包以部署时，无论是访问静态网页还是访问api都要加上 war 包名，形如 [ip]:[port]/[war包名(不包括.war)]/[api]
 ## Reference
 * [TravisCI: Setup MySQL Tables+Data before running Tests](https://andidittrich.de/2017/06/travisci-setup-mysql-tablesdata-before-running-tests.html)
 * [Setting up Databases Travis.CI docs](https://docs.travis-ci.com/user/database-setup/#mysql)
