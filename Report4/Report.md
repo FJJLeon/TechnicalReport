@@ -83,7 +83,9 @@ sudo docker run -p 8200:8080 -p 3306:3306  --network="host" fjjleon/bookstore
 * [Coding Tips: Patterns for Continuous Integration with Docker on Travis CI](https://medium.com/mobileforgood/coding-tips-patterns-for-continuous-integration-with-docker-on-travis-ci-9cedb8348a62)
 * [用nginx的反向代理机制解决前端跨域问题](https://www.cnblogs.com/gabrielchen/p/5066120.html)
 * [From inside of a Docker container, how do I connect to the localhost of the machine?](https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach)
+* [Deploy a Spring Boot WAR into a Tomcat Server](https://www.baeldung.com/spring-boot-war-tomcat-deploy)
 * [How-can-I-run-SQL-file-in-Ubuntu](https://www.quora.com/How-can-I-run-SQL-file-in-Ubuntu)
+* [SpringBoot配置Cors解决跨域请求问题](https://www.cnblogs.com/yuansc/p/9076604.html)
 
 # Requirement 2
 
