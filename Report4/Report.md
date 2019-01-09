@@ -217,3 +217,15 @@ then cleck button "Get Books"
 ## 可见3pods时平均RPS略微低于2pods时的RPS，且更加平滑。
 
 ## 故两个实例可以满足峰值情况下正常平均RPS不高于500ms。
+
+# Requirement 5
+### 实验
+使用jmeter创建500个线程，持续向前端发送http请求，此时replica个数为1，这时response time较高，且会出现error。在1分钟之后(21:25:11)手动将replica个数增加到2个，在第二个pod的启动过程中可以观察到response time出现波动，第二个pod的启动大约需要10秒钟。从图表可以看到，大约40秒之后(21:25:53)response time趋于稳定，稳定值明显低于一个pod的情况，由此证明手动scale起到了效果。后续又手动将pod的个数增加到5个，过程与之前类似，response time的稳定值比起2个pod的情况更低。 
+  
+整个测试过程jmeter绘制的响应时间图如下所示
+![测试](./pictures/test.png)
+
+要实现Autoscale可以通过创建hpa资源，使用如下命令：
+> kubectl autoscale deployment front-dm --max=5 --cpu-percent=50      
+
+上面的命令指定replica个数在1个到5个之间，cpu的最高占用率为50%，即当cpu使用到达50%时开始通过增加pod的个数来scale up。
